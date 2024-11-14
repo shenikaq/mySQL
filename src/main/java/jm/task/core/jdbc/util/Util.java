@@ -9,13 +9,17 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/sakila";
     private static final String USER = "root";
     private static final String PASSWORD = "Dashok_191";
-    static Connection connection;
+    private static Connection connection;
 
-    {
+    public Util() {
         try {
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }
