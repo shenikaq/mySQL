@@ -19,7 +19,7 @@ public class Util {
         }
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 }
