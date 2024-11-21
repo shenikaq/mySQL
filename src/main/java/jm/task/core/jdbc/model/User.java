@@ -30,7 +30,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "name: " + name + ", lastName: " + lastName + ", age: " + age;
+        return "name: '" + name + "', lastName: '" + lastName + "', age: " + age;
     }
 
     public Long getId() {
