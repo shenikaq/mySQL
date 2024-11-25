@@ -1,8 +1,6 @@
 package jm.task.core.jdbc.util;
 
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 //import java.sql.*;
 
 public class Util {
@@ -13,18 +11,30 @@ public class Util {
     private static Connection connection;
 
     public Util() {
-        try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
     }
 
-    public static Connection getConnection() {
+//    public static void registerDriver() {
+//        try {
+//            Driver driver = new com.mysql.jdbc.Driver();
+//            DriverManager.registerDriver(driver);
+//        } catch (SQLException e) {
+//            System.out.println("The driver is not registered");
+//        }
+//    }
+
+    public Connection getConnection() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            connection.setAutoCommit(false);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         return connection;
     }
 
-    public static void closeConnection() {
+    public void closeConnection() {
         if (connection != null) {
             try {
                 connection.close();

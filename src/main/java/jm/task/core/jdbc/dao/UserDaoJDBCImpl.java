@@ -12,66 +12,107 @@ import java.util.LinkedList;
 
 public class UserDaoJDBCImpl implements UserDao {
     private Util util = new Util();
-    private Connection connection = util.getConnection();
+//    private Connection connection = util.getConnection();
 
     public UserDaoJDBCImpl() {
 
     }
 
     public void createUsersTable() {
+        Connection connection = util.getConnection();
         String sql = "create table if not exists user (" +
                 "id bigint not null auto_increment primary key," +
                 "name varchar(50) not null," +
                 "lastName varchar(50) not null," +
                 "age int not null)";
+
         try {
+            connection.beginRequest();
             connection.prepareStatement(sql).executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
         }
     }
 
     public void dropUsersTable() {
+        Connection connection = util.getConnection();
         String sql = "drop table if exists user";
         try {
+            connection.beginRequest();
             connection.prepareStatement(sql).executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
         }
     }
 
     public void saveUser(String name, String lastName, byte age) {
+        Connection connection = util.getConnection();
         String sql = "insert into user (name, lastName, age) values('" + name + "', '"
                 + lastName + "', "
                 + age + ")";
-//        System.out.println(sql);
         try {
+            connection.beginRequest();
             connection.prepareStatement(sql).executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
         }
     }
 
     public void removeUserById(long id) {
+        Connection connection = util.getConnection();
         String sql = "delete from user where id = '" + id + "'";
         try {
+            connection.beginRequest();
             connection.prepareStatement(sql).executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
         }
     }
 
     public List<User> getAllUsers() {
+        Connection connection = util.getConnection();
         String sql = "select * from user";
         List<User> userAll = new LinkedList<>();
-//        System.out.println("asdfasdf");
         try (ResultSet rs = connection.prepareStatement(sql).executeQuery()) {
+            connection.beginRequest();
             while (rs.next()) {
-//                System.out.println(rs.getString(2));
                 User user = new User(rs.getString(2),
                         rs.getString(3), rs.getByte(4));
                 userAll.add(user);
             }
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -79,11 +120,21 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
+        Connection connection = util.getConnection();
         String sql = "delete from user";
         try {
+            connection.beginRequest();
             connection.prepareStatement(sql).executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException ignore) {
+                }
+            }
         }
     }
 }

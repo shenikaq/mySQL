@@ -7,11 +7,11 @@ public class Main {
     public static void main(String[] args) {
 //        Util util = new Util();
         UserServiceImpl userDao = new UserServiceImpl();
+//        Util.registerDriver();
 
         userDao.createUsersTable();
 
         userDao.saveUser("Name1", "LastName1", (byte) 20);
-//        List<User> users = userDao.getAllUsers();
         System.out.println("User с именем — " + userDao.getAllUsers().get(0).getName() + " добавлен в базу данных");
 
         userDao.saveUser("Name2", "LastName2", (byte) 25);
@@ -29,7 +29,7 @@ public class Main {
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
 
-        Util.closeConnection();
+//        util.closeConnection();
     }
 }
 
@@ -38,5 +38,3 @@ public class Main {
 //Получение всех User из базы и вывод в консоль (должен быть переопределен toString в классе User)
 //Очистка таблицы User(ов)
 //Удаление таблицы
-
-
