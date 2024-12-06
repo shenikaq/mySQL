@@ -1,13 +1,22 @@
 package jm.task.core.jdbc;
 
+//ЗАДАНИЕ 1
+//import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+//ЗАДАНИЕ 2
+//import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
+
 import jm.task.core.jdbc.service.UserServiceImpl;
-import jm.task.core.jdbc.util.Util;
+//import jm.task.core.jdbc.service.UserHibernateImpl;
 
 public class Main {
     public static void main(String[] args) {
-//        Util util = new Util();
+//ЗАДАНИЕ 1
+// UserServiceImpl userDao = new UserServiceImpl();
+//ЗАДАНИЕ 2
+// UserDaoHibernateImpl userDao = new UserDaoHibernateImpl();
+
         UserServiceImpl userDao = new UserServiceImpl();
-//        Util.registerDriver();
+//        UserDaoHibernateImpl userDao = new UserDaoHibernateImpl();
 
         userDao.createUsersTable();
 
@@ -28,8 +37,6 @@ public class Main {
 
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
-
-//        util.closeConnection();
     }
 }
 

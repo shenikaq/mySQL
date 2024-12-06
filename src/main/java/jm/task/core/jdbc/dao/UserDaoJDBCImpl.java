@@ -12,7 +12,6 @@ import java.util.LinkedList;
 
 public class UserDaoJDBCImpl implements UserDao {
     private Util util = new Util();
-//    private Connection connection = util.getConnection();
 
     public UserDaoJDBCImpl() {
 

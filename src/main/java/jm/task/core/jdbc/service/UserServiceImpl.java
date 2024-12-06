@@ -1,12 +1,25 @@
 package jm.task.core.jdbc.service;
 
+//ЗАДАНИЕ 1
+//import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+//ЗАДАНИЕ 2
+//import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
+
+import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+//import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.model.User;
 
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    UserDaoJDBCImpl userDao = new UserDaoJDBCImpl();
+//    ЗАДАНИЕ 2
+//    UserDao userDao = new UserDaoHibernateImpl();
+//    ЗАДАНИЕ 1
+//    UserDao userDao = new UserDaoJDBCImpl();
+
+    UserDao userDao = new UserDaoJDBCImpl();
+//    UserDao userDao = new UserDaoHibernateImpl();
 
     @Override
     public void createUsersTable() {
