@@ -30,7 +30,11 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.prepareStatement(sql).executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             if (connection != null) {
                 try {
@@ -49,7 +53,11 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.prepareStatement(sql).executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             if (connection != null) {
                 try {
@@ -70,7 +78,11 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.prepareStatement(sql).executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             if (connection != null) {
                 try {
@@ -89,7 +101,11 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.prepareStatement(sql).executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             if (connection != null) {
                 try {
@@ -113,7 +129,11 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             connection.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         return userAll;
     }
@@ -126,7 +146,11 @@ public class UserDaoJDBCImpl implements UserDao {
             connection.prepareStatement(sql).executeUpdate();
             connection.commit();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            try {
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
         } finally {
             if (connection != null) {
                 try {
